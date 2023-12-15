@@ -1,31 +1,31 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: ingress-gateway-configuration
-spec:
-  selector:
-    istio: ingressgateway # use Istio default gateway implementation
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"   # Domain name of the external website
----
+# apiVersion: networking.istio.io/v1alpha3
+# kind: Gateway
+# metadata:
+#   name: ingress-gateway-configuration
+# spec:
+#   selector:
+#     istio: ingressgateway # use Istio default gateway implementation
+#   servers:
+#   - port:
+#       number: 80
+#       name: http
+#       protocol: HTTP
+#     hosts:
+#     - "*"   # Domain name of the external website
+# ---
 
-# No DestinationRule needed as we aren't doing any subsets, load balancing or outlier detection.
-kind: VirtualService
-apiVersion: networking.istio.io/v1alpha3
-metadata:
-  name: users-service
-  namespace: default
-spec:
-  hosts:      # which incoming host are we applying the proxy rules to???
-    - "*"
-  gateways:
-    - istio-ingress/ingress-gateway-configuration
-  http:
-    - route:
-      - destination:
-          host: users-service
+# # No DestinationRule needed as we aren't doing any subsets, load balancing or outlier detection.
+# kind: VirtualService
+# apiVersion: networking.istio.io/v1alpha3
+# metadata:
+#   name: users-service
+#   namespace: default
+# spec:
+#   hosts:      # which incoming host are we applying the proxy rules to???
+#     - "*"
+#   gateways:
+#     - istio-ingress/ingress-gateway-configuration
+#   http:
+#     - route:
+#       - destination:
+#           host: users-service
