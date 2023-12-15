@@ -1,0 +1,6 @@
+dependencies:
+- name: auth-backend
+  repository: file://../helm-auth-backend
+  version: 0.1.0
+digest: sha256:2c69cbd0f5f36ac8dfdc92368210c5597eb5b8d803eeee2cdcfe03e0b0197104
+generated: "2023-11-06T18:45:58.071310827+05:30"

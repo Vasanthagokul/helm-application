@@ -1,0 +1,12 @@
+appName: auth-backend
+
+container:
+  name: auth-api
+  image: vasanthagokul/kub-dep-auth
+  tag: latest
+  
+service:
+  name: auth-service
+  type: ClusterIP
+  port: 3000
+  targetPort: 3000

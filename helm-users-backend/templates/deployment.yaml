@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName}}
+  # namespace: application
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.container.name }}
+          image: "{{ .Values.container.image }}:{{ .Values.container.tag }}"
+          env:
+            - name: MONGODB_CONNECTION_URI
+              value: {{ .Values.container.env.MONGODB_CONNECTION_URI }}
+            - name: AUTH_API_ADDRESS
+              value: {{ .Values.container.env.AUTH_API_ADDRESS }}
